@@ -34,4 +34,3 @@ else
     echo "Error during backup. Check file permissions or status."
     exit 1
 fi
-
