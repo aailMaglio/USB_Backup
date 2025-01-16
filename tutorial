@@ -1,0 +1,35 @@
+#################################################################
+# TUTORIAL: HOW TO USE THIS SCRIPT
+#################################################################
+# 1. Prerequisites:
+#    - Ensure you're running this script on a Linux-based system.
+#    - Verify that rsync is installed:
+#      Command: `rsync --version`
+#      If not installed, use: 
+#      - `sudo apt install rsync` (Ubuntu/Debian)
+#      - `sudo yum install rsync` (CentOS/Red Hat)
+#
+# 2. Save the Script:
+#    - Create a file named `backup_usb.sh` in your home directory.
+#    - Copy this entire script into the file.
+#    - Save and close the file.
+#
+# 3. Make the Script Executable:
+#    - Run: `chmod +x backup_usb.sh`
+#
+# 4. Run the Script:
+#    - Insert your USB stick.
+#    - Run the script with: `./backup_usb.sh`
+#
+# 5. Script Output:
+#    - Success Message: Backup completes successfully.
+#    - Error Message: Troubleshoot issues with USB detection or file permissions.
+#
+# 6. Customization:
+#    - Modify variables below (e.g., BACKUP_FOLDER) to change the backup folder name.
+#    - Adjust the rsync options to suit your needs (e.g., add `--delete` to remove outdated files).
+#
+# 7. Automate with Cron (Optional):
+#    - Use `crontab -e` to schedule the script to run periodically.
+#    - Example (daily at noon): `0 12 * * * /path/to/backup_usb.sh`
+#################################################################
