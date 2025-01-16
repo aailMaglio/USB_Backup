@@ -1,37 +1,37 @@
 #!/bin/bash
 
-# Configura il percorso del backup
+# Configure the backup path
 DESKTOP_PATH="$HOME/Escritorio"
 BACKUP_FOLDER="Backup_USB"
 BACKUP_PATH="$DESKTOP_PATH/$BACKUP_FOLDER"
 
-# Trova il punto di montaggio della chiavetta USB usando df
+# Find the mount point of the USB stick using df
 USB_MOUNT_POINT=$(df -h | grep "/media/$USER" | awk '{print $6}' | head -n 1)
 
 if [ -z "$USB_MOUNT_POINT" ]; then
-    echo "Errore: Nessuna chiavetta USB rilevata o montata."
+    echo "Error: No USB stick detected or mounted."
     exit 1
 fi
 
-echo "Trovata chiavetta USB montata su: $USB_MOUNT_POINT"
+echo "Found USB stick mounted on: $USB_MOUNT_POINT"
 
-# Verifica se il punto di montaggio esiste
+# Check if the mount point exists
 if [ ! -d "$USB_MOUNT_POINT" ]; then
-    echo "Errore: Il punto di montaggio $USB_MOUNT_POINT non esiste."
+    echo "Error: Mount point $USB_MOUNT_POINT does not exist."
     exit 1
 fi
 
-# Crea la directory di backup se non esiste
+# Create backup directory if it does not exist
 mkdir -p "$BACKUP_PATH"
 
-# Esegui il backup incrementale usando rsync
-echo "Eseguendo il backup..."
+# Perform incremental backup using rsync
+echo "Backing up..."
 rsync -av --ignore-existing "$USB_MOUNT_POINT/" "$BACKUP_PATH/"
 
 if [ $? -eq 0 ]; then
-    echo "Backup completato con successo! I file sono stati salvati in: $BACKUP_PATH"
+    echo "Backup completed successfully! Files have been saved to: $BACKUP_PATH"
 else
-    echo "Errore durante il backup. Controlla i permessi o lo stato dei file."
+    echo "Error during backup. Check file permissions or status."
     exit 1
 fi
 
